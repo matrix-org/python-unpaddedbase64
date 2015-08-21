@@ -14,7 +14,7 @@
 
 import base64
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 
 def encode_base64(input_bytes):

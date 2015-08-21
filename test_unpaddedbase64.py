@@ -16,7 +16,7 @@ from unpaddedbase64 import encode_base64, decode_base64
 import unittest
 
 
-class TestStringMethods(unittest.TestCase):
+class TestUnpaddedBase64(unittest.TestCase):
 
     def test_encode(self):
         self.assertEqual(encode_base64(b''), u'')
