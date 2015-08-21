@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-
-# Copyright 2014 OpenMarket Ltd
+# Copyright 2014, 2015 OpenMarket Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,10 +21,9 @@ def encode_base64(input_bytes):
     """Encode bytes as a base64 string without any padding."""
 
     input_len = len(input_bytes)
-    output_len = 4 * ((input_len + 2) // 3) + (input_len + 2) % 3 - 2
     output_bytes = base64.b64encode(input_bytes)
-    output_string = output_bytes[:output_len].decode("ascii")
-    return output_string
+    output_string = output_bytes.decode("ascii")
+    return output_string.rstrip(u"=")
 
 
 def decode_base64(input_string):
@@ -36,6 +33,5 @@ def decode_base64(input_string):
     input_bytes = input_string.encode("ascii")
     input_len = len(input_bytes)
     padding = b"=" * (3 - ((input_len + 3) % 4))
-    output_len = 3 * ((input_len + 2) // 4) + (input_len + 2) % 4 - 2
     output_bytes = base64.b64decode(input_bytes + padding)
-    return output_bytes[:output_len]
+    return output_bytes
