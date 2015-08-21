@@ -1,6 +1,10 @@
 Unpadded Base64
 ===============
 
+.. image:: https://img.shields.io/pypi/v/unpaddedbase64.svg
+    :target: https://pypi.python.org/pypi/unpaddedbase64/
+    :alt: Latest Version
+
 Encode and decode Base64 without "=" padding.
 
 `RFC 4648`_ specifies that Base64 should be padded to a multiple of 4 bytes
