@@ -1,0 +1,4 @@
+include *.in
+include *.py
+include LICENSE
+include tox.ini
