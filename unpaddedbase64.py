@@ -20,7 +20,6 @@ __version__ = "1.0.0"
 def encode_base64(input_bytes):
     """Encode bytes as a base64 string without any padding."""
 
-    input_len = len(input_bytes)
     output_bytes = base64.b64encode(input_bytes)
     output_string = output_bytes.decode("ascii")
     return output_string.rstrip(u"=")
