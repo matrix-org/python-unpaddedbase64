@@ -17,10 +17,11 @@ import base64
 __version__ = "1.0.1"
 
 
-def encode_base64(input_bytes):
+def encode_base64(input_bytes, urlsafe=False):
     """Encode bytes as a base64 string without any padding."""
 
-    output_bytes = base64.b64encode(input_bytes)
+    encode = base64.urlsafe_b64encode if urlsafe else base64.b64encode
+    output_bytes = encode(input_bytes)
     output_string = output_bytes.decode("ascii")
     return output_string.rstrip(u"=")
 
@@ -32,5 +33,8 @@ def decode_base64(input_string):
     input_bytes = input_string.encode("ascii")
     input_len = len(input_bytes)
     padding = b"=" * (3 - ((input_len + 3) % 4))
-    output_bytes = base64.b64decode(input_bytes + padding)
+    decode = base64.b64decode
+    if u'-' in input_string or u'_' in input_string:
+        decode = base64.urlsafe_b64decode
+    output_bytes = decode(input_bytes + padding)
     return output_bytes
