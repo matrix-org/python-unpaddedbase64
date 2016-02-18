@@ -31,3 +31,11 @@ class TestUnpaddedBase64(unittest.TestCase):
         self.assertEqual(decode_base64(u'AAAA'), b'\x00\x00\x00')
         with self.assertRaises(Exception):
             decode_base64(u'A')
+
+    def test_encode_urlunsafe_chars(self):
+        self.assertEqual(encode_base64(b'\xff\xe6\x9a'), u'/+aa')
+        self.assertEqual(encode_base64(b'\xff\xe6\x9a', True), u'_-aa')
+
+    def test_decode_urlunsafe_chars(self):
+        self.assertEqual(decode_base64(u'/+aa'), b'\xff\xe6\x9a')
+        self.assertEqual(decode_base64(u'_-aa'), b'\xff\xe6\x9a')
