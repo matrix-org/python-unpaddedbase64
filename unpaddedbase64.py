@@ -34,7 +34,7 @@ def decode_base64(input_string):
     input_len = len(input_bytes)
     padding = b"=" * (3 - ((input_len + 3) % 4))
     decode = base64.b64decode
-    if '-' in input_string or '_' in input_string:
+    if "-" in input_string or "_" in input_string:
         decode = base64.urlsafe_b64decode
     output_bytes = decode(input_bytes + padding)
     return output_bytes

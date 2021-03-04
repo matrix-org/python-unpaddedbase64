@@ -17,25 +17,24 @@ import unittest
 
 
 class TestUnpaddedBase64(unittest.TestCase):
-
     def test_encode(self):
-        self.assertEqual(encode_base64(b''), '')
-        self.assertEqual(encode_base64(b'\x00'), 'AA')
-        self.assertEqual(encode_base64(b'\x00\x00'), 'AAA')
-        self.assertEqual(encode_base64(b'\x00\x00\x00'), 'AAAA')
+        self.assertEqual(encode_base64(b""), "")
+        self.assertEqual(encode_base64(b"\x00"), "AA")
+        self.assertEqual(encode_base64(b"\x00\x00"), "AAA")
+        self.assertEqual(encode_base64(b"\x00\x00\x00"), "AAAA")
 
     def test_decode(self):
-        self.assertEqual(decode_base64(''), b'')
-        self.assertEqual(decode_base64('AA'), b'\x00')
-        self.assertEqual(decode_base64('AAA'), b'\x00\x00')
-        self.assertEqual(decode_base64('AAAA'), b'\x00\x00\x00')
+        self.assertEqual(decode_base64(""), b"")
+        self.assertEqual(decode_base64("AA"), b"\x00")
+        self.assertEqual(decode_base64("AAA"), b"\x00\x00")
+        self.assertEqual(decode_base64("AAAA"), b"\x00\x00\x00")
         with self.assertRaises(Exception):
-            decode_base64('A')
+            decode_base64("A")
 
     def test_encode_urlunsafe_chars(self):
-        self.assertEqual(encode_base64(b'\xff\xe6\x9a'), '/+aa')
-        self.assertEqual(encode_base64(b'\xff\xe6\x9a', True), '_-aa')
+        self.assertEqual(encode_base64(b"\xff\xe6\x9a"), "/+aa")
+        self.assertEqual(encode_base64(b"\xff\xe6\x9a", True), "_-aa")
 
     def test_decode_urlunsafe_chars(self):
-        self.assertEqual(decode_base64('/+aa'), b'\xff\xe6\x9a')
-        self.assertEqual(decode_base64('_-aa'), b'\xff\xe6\x9a')
+        self.assertEqual(decode_base64("/+aa"), b"\xff\xe6\x9a")
+        self.assertEqual(decode_base64("_-aa"), b"\xff\xe6\x9a")
