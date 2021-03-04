@@ -17,16 +17,20 @@ import base64
 __version__ = "1.1.0"
 
 
-def encode_base64(input_bytes, urlsafe=False):
+def encode_base64(input_bytes: bytes, urlsafe: bool = False) -> str:
     """Encode bytes as an unpadded base64 string."""
 
-    encode = base64.urlsafe_b64encode if urlsafe else base64.b64encode
+    if urlsafe:
+        encode = base64.urlsafe_b64encode
+    else:
+        encode = base64.b64encode
+
     output_bytes = encode(input_bytes)
     output_string = output_bytes.decode("ascii")
     return output_string.rstrip("=")
 
 
-def decode_base64(input_string):
+def decode_base64(input_string: str) -> bytes:
     """Decode an unpadded standard or urlsafe base64 string to bytes."""
 
     input_bytes = input_string.encode("ascii")
