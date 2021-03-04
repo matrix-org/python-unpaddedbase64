@@ -15,8 +15,6 @@
 
 import base64
 
-__version__ = "1.1.0"
-
 
 def encode_base64(input_bytes: bytes, urlsafe: bool = False) -> str:
     """Encode bytes as an unpadded base64 string."""
