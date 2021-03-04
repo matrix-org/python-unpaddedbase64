@@ -18,7 +18,7 @@ __version__ = "1.1.0"
 
 
 def encode_base64(input_bytes, urlsafe=False):
-    """Encode bytes as a base64 string without any padding."""
+    """Encode bytes as an unpadded base64 string."""
 
     encode = base64.urlsafe_b64encode if urlsafe else base64.b64encode
     output_bytes = encode(input_bytes)
@@ -27,14 +27,12 @@ def encode_base64(input_bytes, urlsafe=False):
 
 
 def decode_base64(input_string):
-    """Decode a base64 string to bytes inferring padding from the length of the
-    string."""
+    """Decode an unpadded standard or urlsafe base64 string to bytes."""
 
     input_bytes = input_string.encode("ascii")
     input_len = len(input_bytes)
     padding = b"=" * (3 - ((input_len + 3) % 4))
-    decode = base64.b64decode
-    if "-" in input_string or "_" in input_string:
-        decode = base64.urlsafe_b64decode
-    output_bytes = decode(input_bytes + padding)
+
+    # Passing altchars here allows decoding both standard and urlsafe base64
+    output_bytes = base64.b64decode(input_bytes + padding, altchars=b"-_")
     return output_bytes
