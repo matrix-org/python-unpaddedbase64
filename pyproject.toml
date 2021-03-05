@@ -1,3 +1,27 @@
 [build-system]
-requires = ["setuptools>=43", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "unpaddedbase64"
+version = "2.0.0rc2"
+description = 'Encode and decode Base64 without "=" padding'
+license = "Apache-2.0"
+authors = [ "The Matrix.org Foundation C.I.C." ]
+readme = "README.rst"
+homepage = "https://github.com/matrix-org/python-unpaddedbase64"
+keywords = ["base64"]
+packages = [
+    { include = "unpaddedbase64.py" }
+]
+
+[tool.poetry.urls]
+"Issue Tracker" = "https://github.com/matrix-org/python-unpaddedbase64/issues"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+black = "*"
+flake8 = "*"
+mypy = "*"

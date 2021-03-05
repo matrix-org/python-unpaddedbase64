@@ -1,7 +1,5 @@
 .coverage
 .tox/
 __pycache__/
-unpaddedbase64.egg-info/
-unpaddedbase64.pyc
-build/
 dist/
+poetry.lock
