@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "unpaddedbase64"
-version = "2.0.0rc2"
+version = "2.0.0"
 description = 'Encode and decode Base64 without "=" padding'
 license = "Apache-2.0"
 authors = [ "The Matrix.org Foundation C.I.C." ]
