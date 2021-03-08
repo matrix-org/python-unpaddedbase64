@@ -22,13 +22,13 @@ jobs:
         python -m pip install flake8 black mypy
     - name: Lint with flake8
       run: |
-        flake8 *.py
+        flake8 unpaddedbase64/ tests/
     - name: Lint with black
       run: |
-        black --check --diff *.py
+        black --check --diff unpaddedbase64/ tests/
     - name: Lint with mypy
       run: |
-        mypy --strict *.py
+        mypy --strict unpaddedbase64/ tests/
 
   test:
     needs: lint
